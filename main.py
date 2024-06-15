@@ -106,7 +106,6 @@ for line in data_lines:
   results[0] = line[0] #input name into results
   entry = line[1:6] #slice guesses out of line
   house = line[6] #slice house out of line
-  comment[6] = " points to "+house
   
   # Populate the guesses into the results list
   for i in range (5):
@@ -284,8 +283,23 @@ for line in data_lines:
     score = 0
 
   # Create a single comment string
-  for word in comment:
-    comment_str = comment_str + word
+  #order_list = [ele for ele in order_list if ele != "0"]
+  #order = "".join(order_list)
+  comment_simplified = [ele for ele in comment if ele != ""]
+  if len(comment_simplified) == 0:
+    comment_simplified.append(str(score)+" points to "+house+". Thanks for playing!")
+  else:
+    comment_simplified.append(str(score)+" points to "+house+"!")
+  comment_str = " ".join(comment_simplified)
+  # comment_count = 0
+  # for i in range (5):
+  #   if comment[i] != "":
+  #     comment_count = comment_count + 1
+  # comment[6] = str(score)+" points to "+house
+  # for word in comment:
+  #   comment_str = comment_str + word
+  # if comment_count == 0:
+  #   comment_str = comment_str + "Thanks for playing!"
 
   # Concatenate entries and results for better display
   #results = [name, e1, r1, e2, r2, e3, r3, e4, r4, e5, r5, comment_str]
