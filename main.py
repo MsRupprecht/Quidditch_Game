@@ -81,6 +81,12 @@ S = positions_lists[5]
 O = positions_lists[6]
 GS = positions_lists[7]
 
+Ravenclaw = 0
+Slytherin = 0
+Hufflepuff = 0
+Gryffindor = 0
+
+
 # Score each line
 for line in data_lines:
   
@@ -105,7 +111,8 @@ for line in data_lines:
   # Initialise the entry list and score
   results[0] = line[0] #input name into results
   entry = line[1:6] #slice guesses out of line
-  house = line[6] #slice house out of line
+  house = line[6][1:] #slice house out of line
+  print(house)
   
   # Populate the guesses into the results list
   for i in range (5):
@@ -301,9 +308,22 @@ for line in data_lines:
     new_line.append(results[2*i+1])
   new_line.append(" "+comment_str)
 
+  # Update overall score for the game
+  if house == "Ravenclaw":
+    Ravenclaw = Ravenclaw + score
+  elif house == "Hufflepuff":
+    Hufflepuff = Hufflepuff + score
+  elif house == "Gryffindor":
+    Gryffindor = Gryffindor + score
+  elif house =="Slytherin":
+    Slytherin = Slytherin + score
+  else:
+    print("No house detected for",name)
 
   # Write the results to the csv file
   csv_writer.writerow(new_line)
 
+overall_score = ["Ravenclaw:"+str(Ravenclaw),"Hufflepuff:"+str(Hufflepuff),"Gryffindor:"+str(Gryffindor), "Slytherin:"+str(Slytherin)]
+csv_writer.writerow(overall_score)
 # save it all and shut it down
 data_output.close()
