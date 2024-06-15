@@ -1,15 +1,3 @@
-name0, F1-MISS, F2-MISS, F3-MISS, F4-MISS, F5-MISS,10 points to ravenclawThanks for playing!
-name1, R1-GOLDEN SNITCH!, R2-GOAL POST!, R3-BEATER'S BAT!, R4-MISS, R5-MISS,"Great catch!  You've got the Golden Snitch! You made it to the goal post, but you forgot to get the Quaffle first!You're ready for those stray Bludgers now!170 points to hufflepuff"
-name2, B1-MISS, B2-MISS, B3-MISS, B4-MISS, B5-GOAL POST!,"You made it to the goal post, but you forgot to get the Quaffle first!15 points to slytherin"
-name0, F1-MISS, F2-BEATER'S BAT!, F3-MISS, F4-MISS, F5-MISS,You're ready for those stray Bludgers now!15 points to Ravenclaw
-name1, R1-MISS, R2-GOLDEN SNITCH!, R3-MISS, R4-BEATER'S BAT!, R5-MISS,Great catch!  You've got the Golden Snitch! You're ready for those stray Bludgers now!165 points to Hufflepuff
-name2, B1-MISS, B2-MISS, B3-MISS, B4-BLUDGER!, B5-MISS,"Oooh, that hurt!  Need to keep an eye out for those rogue Bludgers!5 points to Slytherin"
-name0, F1-MISS, F2-MISS, F3-MISS, F4-MISS, F5-MISS,10 points to RavenclawThanks for playing!
-name1, R1-GOAL POST!, R2-MISS, R3-MISS, R4-SCOREBOARD!, R5-MISS,"You made it to the goal post, but you forgot to get the Quaffle first!Great work - way to bump up that score!25 points to Hufflepuff"
-name2, B1-MISS, B2-MISS, B3-OWL!, B4-OWL!, B5-MISS,Watch out for Errol! Spit those feathers out and get back in the game.Pigwidgeon just crashed into you!0 points to Slytherin
-name0, F1-BLUDGER!, F2-MISS, F3-MISS, F4-MISS, F5-MISS,"Oooh, that hurt!  Need to keep an eye out for those rogue Bludgers!"
-name1, R1-MISS, R2-MISS, R3-BEATER'S BAT!, R4-MISS, R5-BEATER'S BAT!,Another beater bat ready to protect your team!
-name2, B1-GOAL POST!, B2-MISS, B3-MISS, B4-MISS, B5-MISS,"You made it to the goal post, but you forgot to get the Quaffle first!"
-name0, F1-MISS, F2-BEATER'S BAT!, F3-MISS, F4-GOAL POST!, F5-MISS,"You're ready for those stray Bludgers now! You made it to the goal post, but you forgot to get the Quaffle first! 20 points to Ravenclaw!"
-name1, R1-MISS, R2-MISS, R3-BEATER'S BAT!, R4-GOAL POST!, R5-MISS,"You're ready for those stray Bludgers now! You made it to the goal post, but you forgot to get the Quaffle first! 20 points to Hufflepuff!"
-name2, B1-MISS, B2-MISS, B3-MISS, B4-MISS, B5-MISS,10 points to Slytherin. Thanks for playing!
+name0, F1-MISS, F2-MISS, F3-BEATER'S BAT!, F4-MISS, F5-GOAL POST!, You're ready for those stray Bludgers now! You made it to the goal post! Next time pick up the Quaffle first. 20 points to Ravenclaw!
+name1, R1-MISS, R2-GOAL POST!, R3-BEATER'S BAT!, R4-MISS, R5-MISS, You made it to the goal post! Next time pick up the Quaffle first. You're ready for those stray Bludgers now! 20 points to Hufflepuff!
+name2, B1-MISS, B2-MISS, B3-MISS, B4-MISS, B5-MISS, 10 points to Slytherin. Thanks for playing!

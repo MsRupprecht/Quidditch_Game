@@ -122,7 +122,7 @@ for line in data_lines:
   if game_over != "":
     entry = entry [0:i]
     results[2*i+2] = "-THESTRAL POO!"
-    comment[i] = "You flew into the invisible Thestral Poo!  Game over for you as you go back to the castle to wash up."
+    comment[i] = "Oh no - You flew into the invisible Thestral Poo!  Game over for you as you go back to the castle to wash up."
 
   # For each entry that matches Snitch, + 150
   for i in range(len(entry)):
@@ -170,13 +170,13 @@ for line in data_lines:
   # If quaffle comes before goal post, + 10
   # Initialise order_list
   order_list = ["0", "0", "0", "0", "0"]
-  hit_Q = ""
+  hit_Q = []
   hit_GP = []
   # Loop through the entry to find quaffle and goal posts
   for guess_i in range (len(entry)):
     if entry[guess_i] == Q:
       order_list[guess_i] = "Q"
-      hit_Q = guess_i
+      hit_Q.append(guess_i)
     for goalpost_i in range(6):
       if entry[guess_i] == GP[goalpost_i]:
         order_list[guess_i] = "G"
@@ -189,15 +189,15 @@ for line in data_lines:
   location = order.find("QG")
   if location > -1:
     score = score + 10
-    comment[hit_Q] = "You've got the Quaffle, now head to the goal!"
+    comment[hit_Q[0]] = "You've got the Quaffle - now head to the goal!"
     comment[hit_GP[0]] = "You made it to the goal post and scored!!"
     if len(hit_GP)>1:
-      comment[hit_GP[1]] = "You got back to goal, but no one passed you the Quaffle this time."
+      comment[hit_GP[1]] = "You made it back to the goal post but no one passed you the Quaffle this time."
   else:
-    if hit_Q != "":
-      comment[hit_Q] = "You've got the Quaffle, now head to the goal!"
+    if len(hit_Q) != 0:
+      comment[hit_Q[0]] = "You've got the Quaffle! Now head to the goal!"
     if len(hit_GP) != 0:
-      comment[hit_GP[0]] = "You made it to the goal post, but you forgot to get the Quaffle first!"
+      comment[hit_GP[0]] = "You made it to the goal post! Next time pick up the Quaffle first."
 
 
   # For each entry that matches beater bat, +5
@@ -264,14 +264,14 @@ for line in data_lines:
     elif len(hit_BB) > 1:
       comment[hit_BB[1]] = "Another beater bat ready to protect your team!"
     if len(hit_B) == 1:
-      comment[hit_B[0]] = "Oooh, that hurt!  Need to keep an eye out for those rogue Bludgers!"
+      comment[hit_B[0]] = "Oooh - that hurt!  Need to keep an eye out for those rogue Bludgers!"
     elif len(hit_B) == 2:
       comment[hit_B[0]] = "That double blow from the Bludgers really hurts!"
 
   # If score is negative, score becomes 0 and game over
-  if score < 0:
+  if score <= 0 and game_over == "":
     score = 0
-    comment[-1] = "You've been knocked you straight off your broom. Off to Madam Pomfrey to get those bruises seen to."
+    comment[-1] = "Bad luck in today's match - you've been knocked you straight off your broom. Head to Madam Pomfrey to get those bruises seen to."
   
   # Turn blanks into misses
   for i in range (len(entry)):
@@ -286,28 +286,20 @@ for line in data_lines:
   #order_list = [ele for ele in order_list if ele != "0"]
   #order = "".join(order_list)
   comment_simplified = [ele for ele in comment if ele != ""]
-  if len(comment_simplified) == 0:
-    comment_simplified.append(str(score)+" points to "+house+". Thanks for playing!")
-  else:
-    comment_simplified.append(str(score)+" points to "+house+"!")
+  if score != 0:
+    if len(comment_simplified) == 0:
+      comment_simplified.append(str(score)+" points to "+house+". Thanks for playing!")
+    else:
+      comment_simplified.append(str(score)+" points to "+house+"!")
   comment_str = " ".join(comment_simplified)
-  # comment_count = 0
-  # for i in range (5):
-  #   if comment[i] != "":
-  #     comment_count = comment_count + 1
-  # comment[6] = str(score)+" points to "+house
-  # for word in comment:
-  #   comment_str = comment_str + word
-  # if comment_count == 0:
-  #   comment_str = comment_str + "Thanks for playing!"
-
+  
   # Concatenate entries and results for better display
   #results = [name, e1, r1, e2, r2, e3, r3, e4, r4, e5, r5, comment_str]
   new_line = [results[0]]
   for i in range(5):
     results[2*i+1] = " " + results[2*i+1] + results[2*i+2]
     new_line.append(results[2*i+1])
-  new_line.append(comment_str)
+  new_line.append(" "+comment_str)
 
 
   # Write the results to the csv file
