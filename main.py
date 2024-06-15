@@ -11,7 +11,7 @@ data_lines = list(csv_data)
 # open the file ready for appending
 data_output = open("output.csv", mode = "a", newline = "")
 # instantiate the writer
-csv_writer = csv.writer(data_output, delimiter = " ")
+csv_writer = csv.writer(data_output, delimiter = ",")
 
 
 def create_board():
@@ -81,131 +81,93 @@ S = positions_lists[5]
 O = positions_lists[6]
 GS = positions_lists[7]
 
-# Initialise score and results list
-score = 0
-name = ""
-e1 = ""
-r1 = None
-e2 = ""
-r2 = None
-e3 = ""
-r3 = None
-e4 = ""
-r4 = None
-e5 = ""
-r5 = None
-comment = ["", "", "", "", "", ""]
-comment_str = ""
-results = [name, e1, r1, e2, r2, e3, r3, e4, r4, e5, r5, comment_str]
-
 # Score each line
 for line in data_lines:
-  # Initialise the entry list and score
-  entry = line[1:6]
+  
+  # Initialise score and results list
   score = 0
-  results[0] = line[0]
+  name = ""
+  e1 = ""
+  r1 = None
+  e2 = ""
+  r2 = None
+  e3 = ""
+  r3 = None
+  e4 = ""
+  r4 = None
+  e5 = ""
+  r5 = None
+  house = ""
+  comment = ["", "", "", "", "", "", ""]
+  comment_str = ""
+  results = [name, e1, r1, e2, r2, e3, r3, e4, r4, e5, r5, comment_str]
 
-  # Populate the entries into the results list
+  # Initialise the entry list and score
+  results[0] = line[0] #input name into results
+  entry = line[1:6] #slice guesses out of line
+  house = line[6] #slice house out of line
+  comment[6] = " points to "+house
+  
+  # Populate the guesses into the results list
   for i in range (5):
     results[2*i+1] = entry[i]
 
   # Starting score 10 for playing
   score = score + 10
 
-  # If Thestral Poo - total score 0, game will only be scored up to this entry index
+  # If Thestral Poo, game will only be scored up to this entry index
   game_over = ""
   for i in range(5):
     if entry[i] == T:
       game_over = i
-      score = 0
   if game_over != "":
     entry = entry [0:i]
-    results[2*i+2] = "- THESTRAL POO!"
-    comment[i] = "THESTRAL COMMENT"
+    results[2*i+2] = "-THESTRAL POO!"
+    comment[i] = "You flew into the invisible Thestral Poo!  Game over for you as you go back to the castle to wash up."
 
-  # For each entry that matches beater bat, +5
+  # For each entry that matches Snitch, + 150
   for i in range(len(entry)):
-    for bat in BB:
-      if entry[i] == bat:
-        score = score + 5
-        results[2*i+2] = "- BEATER'S BAT!"
-  
+    if entry[i] == GS:
+      score = score + 150
+      results[2*i+2] = "-GOLDEN SNITCH!"
+      comment[i] = "Great catch!  You've got the Golden Snitch! "
+
+  # For each entry that matches Owl, - 5
+  owl_count = 0
+  owl_hits = []
+  for i in range(len(entry)):
+    for owl in O:
+      if entry[i] == owl:
+        score = score - 5
+        results[2*i+2] = "-OWL!"
+        owl_count = owl_count + 1
+        owl_hits.append(i)
+  if owl_count == 1:
+    comment[owl_hits[0]] = "Watch out for Errol!  Spit those feathers out and get back in the game!"
+  elif owl_count == 2:
+    comment[owl_hits[0]] = "Watch out for Errol! Spit those feathers out and get back in the game."
+    comment[owl_hits[1]] = "Pigwidgeon just crashed into you!"
+        
+  # For each entry that matches Scoreboard, + 10
+  for i in range(len(entry)):
+    if entry[i] == S:
+      score = score + 10
+      results[2*i+2] = "-SCOREBOARD!"
+      comment[i] = "Great work - way to bump up that score!"
+
   # For each entry that matches quaffle, +10
   for i in range(len(entry)):
     if entry[i] == Q:
       score = score + 10
-      results[2*i+2] = "- QUAFFLE!"
+      results[2*i+2] = "-QUAFFLE!"
       
   # For each entry that matches Goal Post, +5
   for i in range(len(entry)):
     for post in GP:
       if entry[i] == post:
         score = score + 5
-        results[2*i+2] = "- GOAL POST!"
-  
-  # For each entry that matches Snitch, + 150
-  for i in range(len(entry)):
-    if entry[i] == GS:
-      score = score + 150
-      results[2*i+2] = "- GOLDEN SNITCH!"
-      comment[i] = "Great catch!  You've got the Golden Snitch! "
+        results[2*i+2] = "-GOAL POST!"
 
-  
-  # For each entry that matches Bludger, - 5
-  for i in range(len(entry)):
-    for bludger in B:
-      if entry[i] == bludger:
-        score = score - 5
-        results[2*i+2] = "- BLUDGER!"
-        #comment[i] = "Oooh, that hurt!  Need to keep an eye out for those rogue Bludgers!"
-  
-  
-  # If bat comes before bludger, +5 
-  # Initialise order_list
-  order_list = ["0", "0", "0", "0", "0"]
-  hit_BB = []
-  hit_B = []
-
-  
-  # Loop through the entry to find bats and strikes
-  for guess_i in range(len(entry)):
-    for bat_i in range(4):
-      if entry[guess_i] == BB[bat_i]:
-        order_list[guess_i] = "B"
-        hit_BB.append(guess_i)
-    for bludger_i in range(2):
-      if entry[guess_i] == B[bludger_i]:
-        order_list[guess_i] = "S"
-        hit_B.append(guess_i)
-  # Remove any place holders
-  order_list = [ele for ele in order_list if ele != "0"]
-  # Identify bats and strikes in one string
-  order = "".join(order_list)
-  # Look for "BS"
-  location = order.find("BS")
-  if order == "BBSS":
-    bonus = 2
-    comment[hit_BB[0]] = "You're ready for those stray Bludgers now!"
-    comment[hit_BB[1]] = "Another beater bat ready to protect your team!"
-    comment[hit_B[0]] = "Great defensive work!"
-    comment[hit_B[1]] = "Those Bludgers can't even get close to you!"
-  elif location > -1:
-    bonus = 1
-    leftover = order[location+2:]
-    print("leftover :",leftover)
-    second_location = leftover.find("BS")
-    if second_location > -1:
-      bonus = 2
-      comment[hit_BB[0]] = "You're ready for those stray Bludgers now!"
-      comment[hit_BB[1]] = "Another beater bat ready to protect your team!"
-      comment[hit_B[0]] = "Great defensive work!"
-      comment[hit_B[1]] = "Those Bludgers can't even get close to you!"
-  elif location == -1:
-    bonus = 0
-  else:
-    print("Something went wrong")
-  score = score + 5*bonus
-  
   # If quaffle comes before goal post, + 10
   # Initialise order_list
   order_list = ["0", "0", "0", "0", "0"]
@@ -230,43 +192,112 @@ for line in data_lines:
     score = score + 10
     comment[hit_Q] = "You've got the Quaffle, now head to the goal!"
     comment[hit_GP[0]] = "You made it to the goal post and scored!!"
+    if len(hit_GP)>1:
+      comment[hit_GP[1]] = "You got back to goal, but no one passed you the Quaffle this time."
   else:
+    if hit_Q != "":
+      comment[hit_Q] = "You've got the Quaffle, now head to the goal!"
     if len(hit_GP) != 0:
-      comment[hit_GP[0]] = "You're at the goal, but you forgot to get the Quaffle first!"
+      comment[hit_GP[0]] = "You made it to the goal post, but you forgot to get the Quaffle first!"
 
-  
-  # For each entry that matches Owl, - 5
+
+  # For each entry that matches beater bat, +5
   for i in range(len(entry)):
-    for owl in O:
-      if entry[i] == owl:
+    for bat in BB:
+      if entry[i] == bat:
+        score = score + 5
+        results[2*i+2] = "-BEATER'S BAT!"
+  
+  # For each entry that matches Bludger, - 5
+  for i in range(len(entry)):
+    for bludger in B:
+      if entry[i] == bludger:
         score = score - 5
-        results[2*i+2] = "- OWL!"
-        comment[i] = "Watch out for Errol!  Spit those feathers out and get back in the game!"
+        results[2*i+2] = "-BLUDGER!"
         
-  # For each entry that matches Scoreboard, + 10
-  for i in range(len(entry)):
-    if entry[i] == S:
-      score = score + 10
-      results[2*i+2] = "- SCOREBOARD!"
-      comment[i] = "Great work - way to bump up that score!"
   
+  # If bat comes before bludger, +5 
+  # Initialise order_list
+  order_list = ["0", "0", "0", "0", "0"]
+  hit_BB = []
+  hit_B = []
+
+  # Loop through the entry to find bats and strikes
+  for guess_i in range(len(entry)):
+    for bat_i in range(4):
+      if entry[guess_i] == BB[bat_i]:
+        order_list[guess_i] = "B"
+        hit_BB.append(guess_i)
+    for bludger_i in range(2):
+      if entry[guess_i] == B[bludger_i]:
+        order_list[guess_i] = "S"
+        hit_B.append(guess_i)
+  # Remove any place holders
+  order_list = [ele for ele in order_list if ele != "0"]
+  # Identify bats and strikes in one string
+  order = "".join(order_list)
+  # Look for "BS" and calculate bonus
+  location = order.find("BS")
+  if order == "BBSS":
+    bonus = 2
+  elif location > -1:
+    bonus = 1
+    leftover = order[location+2:]
+    second_location = leftover.find("BS")
+    if second_location > -1:
+      bonus = 2
+  else:
+    bonus = 0
+  score = score + 5*bonus
+  # Insert comments for bats/bludgers
+  if bonus == 1:
+    comment[hit_BB[0]] = "You're ready for those stray Bludgers now!"
+    comment[hit_B[0]] = "Great defensive work!!"
+  elif bonus == 2:
+    comment[hit_BB[0]] = "You're ready for those stray Bludgers now!"
+    comment[hit_BB[1]] = "Another beater bat ready to protect your team!"
+    comment[hit_B[0]] = "Great defensive work!"
+    comment[hit_B[1]] = "Those Bludgers can't even get close to you!"
+  # No bonus, hit just bats or bludgers
+  elif bonus == 0:
+    if len(hit_BB) == 1:
+      comment[hit_BB[0]] = "You're ready for those stray Bludgers now!"
+    elif len(hit_BB) > 1:
+      comment[hit_BB[1]] = "Another beater bat ready to protect your team!"
+    if len(hit_B) == 1:
+      comment[hit_B[0]] = "Oooh, that hurt!  Need to keep an eye out for those rogue Bludgers!"
+    elif len(hit_B) == 2:
+      comment[hit_B[0]] = "That double blow from the Bludgers really hurts!"
+
   # If score is negative, score becomes 0 and game over
   if score < 0:
     score = 0
+    comment[-1] = "You've been knocked you straight off your broom. Off to Madam Pomfrey to get those bruises seen to."
   
   # Turn blanks into misses
   for i in range (len(entry)):
     if results[2*i+2] == None:
-      results[2*i+2] = "- MISS"
+      results[2*i+2] = "-MISS"
   
+  # Override score if Thestral Poo
+  if game_over != "":
+    score = 0
+
   # Create a single comment string
   for word in comment:
     comment_str = comment_str + word
-  results[-1] = comment_str
 
-  
+  # Concatenate entries and results for better display
+  #results = [name, e1, r1, e2, r2, e3, r3, e4, r4, e5, r5, comment_str]
+  new_line = [results[0]]
+  for i in range(5):
+    results[2*i+1] = " " + results[2*i+1] + results[2*i+2]
+    new_line.append(results[2*i+1])
+  new_line.append(comment_str)
+
+
   # Write the results to the csv file
-  csv_writer.writerow(results)
+  csv_writer.writerow(new_line)
 
 # save it all and shut it down
 data_output.close()
