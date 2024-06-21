@@ -1,4 +1,12 @@
-name0, F1-MISS, F2-MISS, F3-MISS, F4-GOAL POST!, F5-MISS, You made it to the goal post! Next time pick up the Quaffle first. 15 points to Ravenclaw!
+name0, F1-MISS, F2-MISS, F3-MISS, F4-MISS, F5-MISS, 10 points to Ravenclaw. Thanks for playing!
 name1, R1-MISS, R2-MISS, R3-MISS, R4-MISS, R5-MISS, 10 points to Hufflepuff. Thanks for playing!
-name2, B1-MISS, B2-MISS, B3-MISS, B4-MISS, B5-BEATER'S BAT!, You're ready for those stray Bludgers now! 15 points to Slytherin!
-Ravenclaw:15,Hufflepuff:10,Gryffindor:0,Slytherin:15
+name2, B1-MISS, B2-GOAL POST!, B3-MISS, B4-MISS, B5-THESTRAL POO!, You made it to the goal post! Next time pick up the Quaffle first. Oh no - You flew into the invisible Thestral Poo!  Game over for you as you go back to the castle to wash up.
+Ravenclaw:10,Hufflepuff:10,Gryffindor:0,Slytherin:0
+name0, F1-MISS, F2-GOLDEN SNITCH!, F3-GOAL POST!, F4-MISS, F5-MISS, Great catch!  You've got the Golden Snitch!  You made it to the goal post! Next time pick up the Quaffle first. 165 points to Ravenclaw!
+name1, R1-MISS, R2-BEATER'S BAT!, R3-BLUDGER!, R4-MISS, R5-MISS, Good job defending against that bludger! 15 points to Hufflepuff!
+name2, B1-BEATER'S BAT!, B2-MISS, B3-MISS, B4-MISS, B5-MISS, You're ready for those stray Bludgers now! 15 points to Slytherin!
+Ravenclaw:165,Hufflepuff:15,Gryffindor:0,Slytherin:15
+name0, F1-MISS, F2-MISS, F3-MISS, F4-MISS, F5-MISS, 10 points to Ravenclaw. Thanks for playing!
+name1, R1-MISS, R2-MISS, R3-MISS, R4-MISS, R5-MISS, 10 points to Hufflepuff. Thanks for playing!
+name2, B1-MISS, B2-GOAL POST!, B3-GOLDEN SNITCH!, B4-MISS, B5-MISS, You made it to the goal post! Next time pick up the Quaffle first. Great catch!  You've got the Golden Snitch!  165 points to Slytherin!
+Ravenclaw:10,Hufflepuff:10,Gryffindor:0,Slytherin:165

@@ -1,3 +1,18 @@
-line = [0, 1, 2, 3, 4, 5, "#Ravenclaw"]
-house = line[6][1:] #slice house out of line
-print(house)
+bats_no_strikes = ["B"]
+bats_no_strikes_text = "You're ready for those stray Bludgers now!"
+save_one_strike = ["BS"]
+save_one_strike_text = "Good job defending against that bludger!"
+save_one_multiple_bats = ["BBBS", "BBSB", "BSBB", "BBBBS", "BBBSB", "BBSBB", "BSBBB"]
+save_one_multiple_bats_text = "Good thing you picked up so many bats - you were able to expertly defend against that rogue bludger"
+save_two_strikes = ["BBSS", "BSBS", "BBBSS", "BBSBS", "BSBBS"]
+save_two_strikes_text = "Good job defending against both of those bludgers"
+bats_after_one_strike = ["SB", "SBBB", "SBBBB"]
+bats_after_one_strike_text = "You picked up a bat, but unfortunately it was too late and you still got hit by a rogue bludger."
+bats_after_two_strikes = ["SSB", "SSBB", "SSBBB"]
+bats_after_two_strikes_text = "You picked up a bat, but unfortunately it was too late and you still got hit by those rogue bludgers."
+save_one_miss_one = ["BSS", "SBS", "BSSB", "SBSB", "SBBBS", "SBBSB", "SBSBB"]
+save_one_miss_one_text = "You defended admirably against one bludger, but got hit by the other one."
+one_strike = ["S"]
+one_strike_text = "Oooh - that hurt!  Need to keep an eye out for those rogue Bludgers!"
+two_strikes = ["SS"]
+two_strikes_text = "Oooh - that double blow really hurt!  Need to keep an eye out for those rogue Bludgers!"

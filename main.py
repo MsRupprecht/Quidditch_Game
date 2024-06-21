@@ -112,7 +112,6 @@ for line in data_lines:
   results[0] = line[0] #input name into results
   entry = line[1:6] #slice guesses out of line
   house = line[6][1:] #slice house out of line
-  print(house)
   
   # Populate the guesses into the results list
   for i in range (5):
@@ -256,24 +255,35 @@ for line in data_lines:
     bonus = 0
   score = score + 5*bonus
   # Insert comments for bats/bludgers
-  if bonus == 1:
-    comment[hit_BB[0]] = "You're ready for those stray Bludgers now!"
-    comment[hit_B[0]] = "Great defensive work!!"
-  elif bonus == 2:
-    comment[hit_BB[0]] = "You're ready for those stray Bludgers now!"
-    comment[hit_BB[1]] = "Another beater bat ready to protect your team!"
-    comment[hit_B[0]] = "Great defensive work!"
-    comment[hit_B[1]] = "Those Bludgers can't even get close to you!"
-  # No bonus, hit just bats or bludgers
-  elif bonus == 0:
-    if len(hit_BB) == 1:
-      comment[hit_BB[0]] = "You're ready for those stray Bludgers now!"
-    elif len(hit_BB) > 1:
-      comment[hit_BB[1]] = "Another beater bat ready to protect your team!"
-    if len(hit_B) == 1:
-      comment[hit_B[0]] = "Oooh - that hurt!  Need to keep an eye out for those rogue Bludgers!"
-    elif len(hit_B) == 2:
-      comment[hit_B[0]] = "That double blow from the Bludgers really hurts!"
+  bats_no_strikes = ["B"]
+  save_one_strike = ["BS"]
+  save_one_multiple_bats = ["BBBS", "BBSB", "BSBB", "BBBBS", "BBBSB", "BBSBB", "BSBBB"]
+  save_two_strikes = ["BBSS", "BSBS", "BBBSS", "BBSBS", "BSBBS"]
+  bats_after_one_strike = ["SB", "SBBB", "SBBBB"]
+  bats_after_two_strikes = ["SSB", "SSBB", "SSBBB"]
+  save_one_miss_one = ["BSS", "SBS", "BSSB", "SBSB", "SBBBS", "SBBSB", "SBSBB"]
+  one_strike = ["S"]
+  two_strikes = ["SS"]
+  if order in bats_no_strikes:
+    comment[hit_BB[-1]] = "You're ready for those stray Bludgers now!"
+  elif order in save_one_strike:
+    comment[hit_B[-1]] = "Good job defending against that bludger!"
+  elif order in save_one_multiple_bats:
+    comment[hit_B[-1]] = "Good thing you picked up so many bats - you were able to expertly defend against that rogue bludger"
+  elif order in save_two_strikes:
+    comment[hit_B[-1]] = "Good job defending against both of those bludgers."
+  elif order in bats_after_one_strike:
+    comment[hit_B[-1]] = "You picked up a bat, but unfortunately it was too late and you still got hit by a rogue bludger."
+  elif order in bats_after_two_strikes:
+    comment[hit_B[-1]] = "You picked up a bat, but unfortunately it was too late and you still got hit by those rogue bludgers."
+  elif order in save_one_miss_one:
+    comment[hit_B[-1]] = "You defended admirably against one bludger, but got hit by the other one."
+  elif order in one_strike:
+    comment[hit_B[-1]] = "Oooh - that hurt!  Need to keep an eye out for those rogue Bludgers!"
+  elif order in two_strikes:
+    comment[hit_B[-1]] = "Oooh - that double blow really hurt!  Need to keep an eye out for those rogue Bludgers!"
+
+
 
   # If score is negative, score becomes 0 and game over
   if score <= 0 and game_over == "":
@@ -325,5 +335,6 @@ for line in data_lines:
 
 overall_score = ["Ravenclaw:"+str(Ravenclaw),"Hufflepuff:"+str(Hufflepuff),"Gryffindor:"+str(Gryffindor), "Slytherin:"+str(Slytherin)]
 csv_writer.writerow(overall_score)
+
 # save it all and shut it down
 data_output.close()
