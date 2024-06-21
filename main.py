@@ -8,10 +8,19 @@ data = open("input.csv")
 csv_data = csv.reader(data, delimiter=' ')
 # reformat into a python object
 data_lines = list(csv_data)
+
+# output file for posting
 # open the file ready for appending
 data_output = open("output.csv", mode = "a", newline = "")
 # instantiate the writer
 csv_writer = csv.writer(data_output, delimiter = ",")
+
+# output file for sheets scoring
+# open the file ready for appending
+data_results = open("results.csv", mode = "a", newline = "")
+# instantiate the writer
+csv_writer_results = csv.writer(data_results, delimiter = ",")
+
 
 
 def create_board():
@@ -330,11 +339,14 @@ for line in data_lines:
   else:
     print("No house detected for",name)
 
-  # Write the results to the csv file
+  # Write the results to the csv files
+  results_line = [results[0], score, house]
   csv_writer.writerow(new_line)
+  csv_writer_results.writerow(results_line)
 
 overall_score = ["Ravenclaw:"+str(Ravenclaw),"Hufflepuff:"+str(Hufflepuff),"Gryffindor:"+str(Gryffindor), "Slytherin:"+str(Slytherin)]
 csv_writer.writerow(overall_score)
 
 # save it all and shut it down
 data_output.close()
+data_results.close()
