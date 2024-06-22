@@ -20,6 +20,8 @@ csv_writer = csv.writer(data_output, delimiter = ",")
 data_results = open("results.csv", mode = "a", newline = "")
 # instantiate the writer
 csv_writer_results = csv.writer(data_results, delimiter = ",")
+results_headings = ["name", "points", "house"]
+csv_writer_results.writerow(results_headings)
 
 
 
