@@ -2,3 +2,11 @@ name0, F1-MISS, F2-MISS, F3-MISS, F4-MISS, F5-GOAL POST!, You made it to the goa
 name1, R1-BLUDGER!, R2-MISS, R3-MISS, R4-MISS, R5-OWL!, Oooh - that hurt!  Need to keep an eye out for those rogue Bludgers! Watch out for Errol!  Spit those feathers out and get back in the game! Bad luck in today's match - you've been knocked you straight off your broom. Head to Madam Pomfrey to get those bruises seen to.
 name2, B1-MISS, B2-QUAFFLE!, B3-MISS, B4-MISS, B5-MISS, You've got the Quaffle! Now head to the goal! 20 points to Slytherin!
 Ravenclaw:15,Hufflepuff:0,Gryffindor:0,Slytherin:20
+name0, F1-MISS, F2-BLUDGER!, F3-MISS, F4-MISS, F5-OWL!, Oooh - that hurt!  Need to keep an eye out for those rogue Bludgers! Watch out for Errol!  Spit those feathers out and get back in the game! Bad luck in today's match - you've been knocked you straight off your broom. Head to Madam Pomfrey to get those bruises seen to.
+name1, R1-MISS, R2-MISS, R3-GOAL POST!, R4-MISS, R5-MISS, You made it to the goal post! Next time pick up the Quaffle first. 15 points to Hufflepuff!
+name2, B1-MISS, B2-MISS, B3-MISS, B4-MISS, B5-MISS, 10 points to Slytherin. Thanks for playing!
+Ravenclaw:0,Hufflepuff:15,Gryffindor:0,Slytherin:10
+name0, F1-MISS, F2-GOAL POST!, F3-GOAL POST!, F4-MISS, F5-MISS, You made it to the goal post! Next time pick up the Quaffle first. 20 points to Ravenclaw!
+name1, R1-OWL!, R2-OWL!, R3-MISS, R4-MISS, R5-MISS, Watch out for Errol! Spit those feathers out and get back in the game. Pigwidgeon just crashed into you! Bad luck in today's match - you've been knocked you straight off your broom. Head to Madam Pomfrey to get those bruises seen to.
+name2, B1-BLUDGER!, B2-MISS, B3-MISS, B4-BEATER'S BAT!, B5-MISS," You picked up a bat, but unfortunately it was too late and you still got hit by a rogue bludger. 10 points to Slytherin!"
+Ravenclaw:20,Hufflepuff:0,Gryffindor:0,Slytherin:10

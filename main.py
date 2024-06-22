@@ -9,13 +9,13 @@ csv_data = csv.reader(data, delimiter=' ')
 # reformat into a python object
 data_lines = list(csv_data)
 
-# output file for posting
+# output file (for posting)
 # open the file ready for appending
 data_output = open("output.csv", mode = "a", newline = "")
 # instantiate the writer
 csv_writer = csv.writer(data_output, delimiter = ",")
 
-# output file for sheets scoring
+# create results file (for scoring)
 # open the file ready for appending
 data_results = open("results.csv", mode = "a", newline = "")
 # instantiate the writer
@@ -311,8 +311,6 @@ for line in data_lines:
     score = 0
 
   # Create a single comment string
-  #order_list = [ele for ele in order_list if ele != "0"]
-  #order = "".join(order_list)
   comment_simplified = [ele for ele in comment if ele != ""]
   if score != 0:
     if len(comment_simplified) == 0:
@@ -322,7 +320,6 @@ for line in data_lines:
   comment_str = " ".join(comment_simplified)
   
   # Concatenate entries and results for better display
-  #results = [name, e1, r1, e2, r2, e3, r3, e4, r4, e5, r5, comment_str]
   new_line = [results[0]]
   for i in range(5):
     results[2*i+1] = " " + results[2*i+1] + results[2*i+2]
